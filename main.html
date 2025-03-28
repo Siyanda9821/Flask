@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone Insurance</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+    }
+
+    .background-container {
+      background: url('https://images.unsplash.com/photo-1689799515027-878d0b0cd1a5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+      background-size: cover;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 800px;
+      z-index: -1;
+      filter: brightness(0.7);
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: transparent;
+      color: white;
+    }
+
+    .title {
+      font-size: 24px;
+      color: white;
+    }
+
+    .sign-in-up {
+      display: flex;
+      gap: 20px;
+    }
+
+    .sign-up,
+    .login {
+      border-radius: 30px;
+      border: 1px solid white;
+      padding: 10px 20px;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .sign-up:hover,
+    .login:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .main-mid-section {
+      height: 640px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      background: transparent;
+    }
+
+    .main-mid-section-content {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 10px;
+    }
+
+    .main-mid-section h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .main-mid-section p {
+      font-size: 24px;
+    }
+
+    .main-footer {
+      background: #333;
+      color: white;
+      width: 100%;
+      padding: 40px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-around;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-section h1 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .footer-section ul {
+      list-style-type: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .footer-section ul li:hover {
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-container"></div>
+
+  <header class="main-header">
+    <h1 class="title">Phone Insurance</h1>
+    <div class="sign-in-up">
+      <div class="sign-up">Sign Up</div>
+      <div class="login">Log In</div>
+    </div>
+  </header>
+
+  <section class="main-mid-section">
+    <div class="main-mid-section-content">
+      <h1>Protecting Your Most Used Asset</h1>
+      <p>Comprehensive protection for your smartphone</p>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <section class="footer-content">
+      <div class="footer-section footer-policies">
+        <h1>Policies</h1>
+        <ul>
+          <li>Fresher</li>
+          <li>Personal</li>
+          <li>Business</li>
+          <li>Platinum</li>
+        </ul>
+      </div>
+
+      <div class="footer-section footer-about">
+        <h1>About</h1>
+        <ul>
+          <li>FAQs</li>
+          <li>Partnerships</li>
+          <li>Terms of Use</li>
+        </ul>
+      </div>
+
+      <div class="footer-section footer-claims">
+        <h1>Claims</h1>
+        <ul>
+          <li>Damage Claim</li>
+          <li>Theft/Loss Claim</li>
+          <li>Upgrade Claim</li>
+        </ul>
+      </div>
+
+      <div class="footer-section footer-contact">
+        <h1>Contact</h1>
+        <ul>
+          <li>helpdesk@phoneinsurance.com</li>
+          <li>+27 123 456 789</li>
+          <li>Contact Form</li>
+        </ul>
+      </div>
+    </section>
+  </footer>
+</body>
+
+</html>

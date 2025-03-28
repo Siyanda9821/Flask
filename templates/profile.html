@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block head_content %}
+
+<style>
+  .user-name {
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  .user-pic {
+    height: 225px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .user-container {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+</style>
+
+{% endblock %} {% block content %} {% for user in users %}
+<div class="user-container">
+  <img class="user-pic" src="{{user.pic}}" alt="profile picture" />
+  <p>Hello, <span class="user-name">{{user.name}}</span> 🎉🎉</p>
+</div>
+{% endfor %} {% endblock %}
