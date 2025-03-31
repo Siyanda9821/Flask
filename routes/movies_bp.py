@@ -1,6 +1,10 @@
+from ast import Return
 from pprint import pprint
 
 from flask import Blueprint, request
+
+from extensions import db
+from models.movie import Movie
 
 movies = [
     {
@@ -103,38 +107,59 @@ movies_bp = Blueprint("movies_bp", __name__)
 # /movies -> movies
 @movies_bp.get("/")
 def get_all_movies():
-    # Auto converts data -> JSON (Flask)
-    return movies
+    movies = Movie.query.all()
+    movie_dict = [movie.to_dict() for movie in movies]
+    return movie_dict
 
 
 # /movies/100 - <id> -> Variable
 @movies_bp.get("/<id>")
 def get_movie_by_id(id):
     # Auto converts data -> JSON (Flask)
-    for movie in movies:
-        if movie["id"] == id:
-            return movie
-    return {"message": "Movie not found"}, HTTP_NOT_FOUND
+    movie = Movie.query.get(id)
+
+    if not movie:
+        return {"message": "Movie not found"}, HTTP_NOT_FOUND
+
+    # for movie in movies:
+    #     if movie["id"] == id:
+    #         return movie
+    return movie.to_dict()
 
 
 # /movies/100 - <id> -> Variable
 @movies_bp.delete("/<id>")
 def delete_movie_by_id(id):  # log
-    # Auto converts data -> JSON (Flask)
-    for movie in movies:
-        if movie["id"] == id:
-            movies.remove(movie)
-            return {"message": "Movie deleted successfully", "data": movie}
-    return {"message": "Movie not found"}, HTTP_NOT_FOUND
+    movie = Movie.query.get(id)
+
+    if not movie:
+        return {"message": "Movie not found"}, HTTP_NOT_FOUND
+
+    try:
+        data = movie.to_dict()  # Get data before deletion
+        db.session.delete(movie)  # Delete the movie object
+        db.session.commit()  # Commit the deletion to the database
+        return {"message": "Movie deleted successfully", "data": data}
+
+    except Exception as e:
+        db.session.rollback()  # Undo any changes if an error occurs
+    return {"message": str(e)}, 500
 
 
 @movies_bp.post("/")  # HOF
 def create_movie():
-    new_movie = request.get_json()  # body
-    ids = [int(movie["id"]) for movie in movies]  # List of ids
-    new_movie["id"] = str(max(ids) + 1)  # max + 1
-    movies.append(new_movie)
-    return {"message": "Movie created successfully", "data": new_movie}
+    data = request.get_json()
+    new_movie = Movie(**data)
+    try:
+        db.session.add(new_movie)
+        db.session.commit()
+        return {
+            "message": "Movie created success",
+            "data": new_movie.to_dict(),
+        }, 201
+    except:
+        db.session.rollback()  # Undo any changes if an error occurs
+        return {"message": "wow"}, 500
 
 
 # GET + POST

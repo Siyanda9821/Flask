@@ -17,11 +17,21 @@
     text-align: center;
     margin-bottom: 32px;
   }
+
+  .verified {
+    color: oklch(0.623 0.214 259.815);
+  }
 </style>
 
 {% endblock %} {% block content %} {% for user in users %}
 <div class="user-container">
   <img class="user-pic" src="{{user.pic}}" alt="profile picture" />
-  <p>Hello, <span class="user-name">{{user.name}}</span> 🎉🎉</p>
+  <p>
+    Hello, <span class="user-name">{{user.name}}</span>
+    <!-- Conditional Rendering -->
+    {% if user.isVerified %}
+    <span class="verified"><i class="fa-solid fa-circle-check"></i></span>
+    {% endif %}
+  </p>
 </div>
 {% endfor %} {% endblock %}

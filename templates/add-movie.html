@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block head_content %}
+<style>
+  .form-element {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+  }
+</style>
+{% endblock %} {% block content %}
+
+<form action="{{url_for('movies_list_bp.create_movie')}}" method="POST" class="form-container">
+  <div class="form-element">
+    <label for="name">Name</label>
+    <input type="text" placeholder="John Wick" id="name" required name="name" />
+  </div>
+  <div class="form-element">
+    <label for="poster">Poster</label>
+    <input type="text" placeholder="http://" id="poster" required name="poster" />
+  </div>
+  <div class="form-element">
+    <label for="rating">Rating</label>
+    <input type="number" placeholder="8" id="rating" required min="1" max="10" name="rating" />
+  </div>
+  <div class="form-element">
+    <label for="summary">Summary</label>
+    <input type="text" placeholder="Awesome movie" id="summary" required name="summary" />
+  </div>
+  <div class="form-element">
+    <label for="trailer">Trailer</label>
+    <input type="text" placeholder="http://" id="trailer" required name="trailer" />
+  </div>
+
+  <button type="submit">Add Movie</button>
+</form>
+
+{% endblock %}
